@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html lang='en'>
+
+  <head>
+    <meta charset='utf-8'>
+    <title>&#9679; no allow="autoplay"</title>
+  </head>
+
+
+  <body>
+
+
+
+    <iframe
+      id='no-autoplay'
+      src='https://player.vimeo.com/video/143749617?controls=false&loop=true'
+      width='640' height='480' frameborder='0'
+      webkitallowfullscreen mozallowfullscreen allowfullscreen
+      >
+    </iframe>
+
+    <button rel='start-no-autoplay'>Start video with no allow="autoplay"</button>
+
+
+    <iframe
+      id='autoplay' 
+      src='https://player.vimeo.com/video/143749617?controls=false&loop=true'
+      width='640' height='480' frameborder='0'
+      webkitallowfullscreen mozallowfullscreen allowfullscreen
+      allow="autoplay"
+      >
+    </iframe>
+
+    <button rel='start-autoplay'>Start video WITH allow="autoplay"</button>
+
+
+
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <script>
+      var $noAutoplay = document.querySelector('#no-autoplay');
+      var noAutoPlay = new Vimeo.Player($noAutoplay);
+
+
+      var $autoplay = document.querySelector('#autoplay');
+      var autoPlay = new Vimeo.Player($autoplay);
+
+
+      document.addEventListener('click', function(event) {
+
+        if ( event.target.matches('[rel="start-no-autoplay"]') ) {
+          console.log('start-no-autoplay: clicked');
+          noAutoPlay.play();
+        }
+
+        if ( event.target.matches('[rel="start-autoplay"]') ) {
+          console.log('autoplay: clicked');
+          autoPlay.play();
+        }
+
+        console.log(event.target, ' was clicked');
+      });
+    </script>
+
+
+  </body>
+</html>
